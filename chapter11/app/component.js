@@ -10,46 +10,73 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var repository_model_1 = require("./repository.model");
+var product_model_1 = require("./product.model");
 var ProductComponent = (function () {
-    function ProductComponent(ref) {
+    function ProductComponent() {
         this.model = new repository_model_1.Model();
-        this.targetName = "Kayak";
-        this.counter = 1;
-        window.appRef = ref;
-        window.model = this.model;
+        this.newProduct = new product_model_1.Product();
+        this.formSubmitted = false;
     }
-    ProductComponent.prototype.getProductByPosition = function (position) {
-        return this.model.getProducts()[position];
-    };
     ProductComponent.prototype.getProduct = function (key) {
         return this.model.getProduct(key);
     };
     ProductComponent.prototype.getProducts = function () {
         return this.model.getProducts();
     };
-    ProductComponent.prototype.getProductCount = function () {
-        console.log("getProductCount invoked");
-        return this.getProducts().length;
-    };
-    ProductComponent.prototype.getKey = function (index, product) {
-        return product.id;
-    };
-    Object.defineProperty(ProductComponent.prototype, "nextProduct", {
+    Object.defineProperty(ProductComponent.prototype, "jsonProduct", {
         get: function () {
-            return this.model.getProducts().shift();
+            return JSON.stringify(this.newProduct);
         },
         enumerable: true,
         configurable: true
     });
-    ProductComponent.prototype.getProductPrice = function (index) {
-        return Math.floor(this.getProduct(index).price);
+    ProductComponent.prototype.addProduct = function (p) {
+        console.log("New Product: " + this.jsonProduct);
+    };
+    ProductComponent.prototype.getValidationMessages = function (state, thingName) {
+        var thing = state.path || thingName;
+        var messages = [];
+        if (state.errors) {
+            for (var errorName in state.errors) {
+                switch (errorName) {
+                    case "required":
+                        messages.push("You must enter a " + thing);
+                        break;
+                    case "minlength":
+                        messages.push("A " + thing + " must be at least " + state.errors['minlength'].requiredLength + " characters");
+                        break;
+                    case "pattern":
+                        messages.push("The " + thing + " contains illegal characters");
+                        break;
+                }
+            }
+        }
+        return messages;
+    };
+    ProductComponent.prototype.submitForm = function (form) {
+        this.formSubmitted = true;
+        if (form.valid) {
+            this.addProduct(this.newProduct);
+            this.newProduct = new product_model_1.Product();
+            form.reset();
+            this.formSubmitted = false;
+        }
+    };
+    ProductComponent.prototype.getFormValidationMessages = function (form) {
+        var _this = this;
+        var messages = [];
+        Object.keys(form.controls).forEach(function (k) {
+            _this.getValidationMessages(form.controls[k], k)
+                .forEach(function (m) { return messages.push(m); });
+        });
+        return messages;
     };
     ProductComponent = __decorate([
         core_1.Component({
             selector: "app",
             templateUrl: "app/template.html"
         }), 
-        __metadata('design:paramtypes', [core_1.ApplicationRef])
+        __metadata('design:paramtypes', [])
     ], ProductComponent);
     return ProductComponent;
 }());
