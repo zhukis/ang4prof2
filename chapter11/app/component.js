@@ -13,36 +13,36 @@ var repository_model_1 = require("./repository.model");
 var ProductComponent = (function () {
     function ProductComponent(ref) {
         this.model = new repository_model_1.Model();
-        this.fontSizeWithUnits = "30px";
-        this.fontSizeWithoutUnits = "30";
+        this.targetName = "Kayak";
+        this.counter = 1;
         window.appRef = ref;
         window.model = this.model;
     }
     ProductComponent.prototype.getProductByPosition = function (position) {
         return this.model.getProducts()[position];
     };
-    ProductComponent.prototype.getClassesByPosition = function (position) {
-        var product = this.getProductByPosition(position);
-        return "p-a-1 " + (product.price < 50 ? "bg-info" : "bg-warning");
+    ProductComponent.prototype.getProduct = function (key) {
+        return this.model.getProduct(key);
     };
-    ProductComponent.prototype.getClasses = function (key) {
-        var product = this.model.getProduct(key);
-        return "p-a-1 " + (product.price < 50 ? "bg-info" : "bg-warning");
+    ProductComponent.prototype.getProducts = function () {
+        return this.model.getProducts();
     };
-    ProductComponent.prototype.getClassMap = function (key) {
-        var product = this.model.getProduct(key);
-        return {
-            "text-xs-center bg-danger": product.name == "Kayak",
-            "bg-info": product.price < 50
-        };
+    ProductComponent.prototype.getProductCount = function () {
+        console.log("getProductCount invoked");
+        return this.getProducts().length;
     };
-    ProductComponent.prototype.getStyles = function (key) {
-        var product = this.model.getProduct(key);
-        return {
-            fontSize: "30px",
-            "margin.px": 100,
-            color: product.price > 50 ? "red" : "green"
-        };
+    ProductComponent.prototype.getKey = function (index, product) {
+        return product.id;
+    };
+    Object.defineProperty(ProductComponent.prototype, "nextProduct", {
+        get: function () {
+            return this.model.getProducts().shift();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ProductComponent.prototype.getProductPrice = function (index) {
+        return Math.floor(this.getProduct(index).price);
     };
     ProductComponent = __decorate([
         core_1.Component({

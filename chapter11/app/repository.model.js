@@ -1,5 +1,6 @@
 "use strict";
 var datasource_model_1 = require("./datasource.model");
+var product_model_1 = require("./product.model");
 var Model = (function () {
     function Model() {
         var _this = this;
@@ -40,6 +41,10 @@ var Model = (function () {
             candidate++;
         }
         return candidate;
+    };
+    Model.prototype.swapProduct = function () {
+        var p = this.products.shift();
+        this.products.push(new product_model_1.Product(p.id, p.name, p.category, p.price));
     };
     return Model;
 }());
