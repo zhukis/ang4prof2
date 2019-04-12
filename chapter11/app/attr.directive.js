@@ -11,28 +11,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var product_model_1 = require("./product.model");
 var PaAttrDirective = (function () {
-    function PaAttrDirective(element) {
-        var _this = this;
-        this.element = element;
+    function PaAttrDirective() {
         this.click = new core_1.EventEmitter();
-        this.element.nativeElement.addEventListener("click", function (e) {
-            if (_this.product != null) {
-                _this.click.emit(_this.product.category);
-            }
-        });
     }
-    PaAttrDirective.prototype.ngOnChanges = function (changes) {
-        var change = changes["bgClass"];
-        var classList = this.element.nativeElement.classList;
-        if (!change.isFirstChange() && classList.contains(change.previousValue)) {
-            classList.remove(change.previousValue);
-        }
-        if (!classList.contains(change.currentValue)) {
-            classList.add(change.currentValue);
+    PaAttrDirective.prototype.triggerCustomEvent = function () {
+        if (this.product != null) {
+            this.click.emit(this.product.category);
         }
     };
     __decorate([
-        core_1.Input("pa-attr"), 
+        core_1.Input("pa-attr"),
+        core_1.HostBinding("class"), 
         __metadata('design:type', String)
     ], PaAttrDirective.prototype, "bgClass", void 0);
     __decorate([
@@ -43,11 +32,17 @@ var PaAttrDirective = (function () {
         core_1.Output("pa-category"), 
         __metadata('design:type', Object)
     ], PaAttrDirective.prototype, "click", void 0);
+    __decorate([
+        core_1.HostListener("click"), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', []), 
+        __metadata('design:returntype', void 0)
+    ], PaAttrDirective.prototype, "triggerCustomEvent", null);
     PaAttrDirective = __decorate([
         core_1.Directive({
             selector: "[pa-attr]"
         }), 
-        __metadata('design:paramtypes', [core_1.ElementRef])
+        __metadata('design:paramtypes', [])
     ], PaAttrDirective);
     return PaAttrDirective;
 }());
