@@ -16,6 +16,7 @@ var ProductComponent = (function () {
     function ProductComponent() {
         this.model = new repository_model_1.Model();
         this.form = new form_model_1.ProductFormGroup();
+        this.showTable = true;
         this.newProduct = new product_model_1.Product();
         this.formSubmitted = false;
     }
