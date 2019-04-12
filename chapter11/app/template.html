@@ -30,6 +30,15 @@
 </div>
 
 <div class="col-xs-6">
+
+    <div class="form-group bg-info p-a-1">
+        <label>Name:</label>
+        <input class="bg-primary" 
+            [(paModel)]="newProduct.name"
+            #paModel="paModel" />
+        <div class="bg-primary">Direction: {{paModel.direction}}</div>
+    </div>
+
     <table class="table table-sm table-bordered table-striped">
         <tr><th></th><th>Name</th><th>Category</th><th>Price</th></tr>
         <tr *ngFor="let item of getProducts(); let i = index" 
