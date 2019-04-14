@@ -16,6 +16,8 @@ var attr_directive_1 = require("./attr.directive");
 var twoway_directive_1 = require("./twoway.directive");
 var paif_directive_1 = require("./paif.directive");
 var iterator_directive_1 = require("./iterator.directive");
+var cellColor_directive_1 = require("./cellColor.directive");
+var cellColorSwitcher_directive_1 = require("./cellColorSwitcher.directive");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -23,7 +25,8 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, forms_1.ReactiveFormsModule],
             declarations: [component_1.ProductComponent, attr_directive_1.PaAttrDirective, twoway_directive_1.PaModel,
-                paif_directive_1.PaStructureDirective, iterator_directive_1.PaIteratorDirective],
+                paif_directive_1.PaStructureDirective, iterator_directive_1.PaIteratorDirective,
+                cellColor_directive_1.PaCellColor, cellColorSwitcher_directive_1.PaCellColorSwitcher],
             bootstrap: [component_1.ProductComponent]
         }), 
         __metadata('design:paramtypes', [])
