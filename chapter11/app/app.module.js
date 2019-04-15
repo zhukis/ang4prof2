@@ -29,6 +29,7 @@ var discount_pipe_1 = require("./discount.pipe");
 var discountAmount_directive_1 = require("./discountAmount.directive");
 var datasource_model_1 = require("./datasource.model");
 var repository_model_1 = require("./repository.model");
+var log_service_1 = require("./log.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -41,7 +42,9 @@ var AppModule = (function () {
                 productForm_component_1.ProductFormComponent, addTax_pipe_1.PaAddTaxPipe, categoryFilter_pipe_1.PaCategoryFilterPipe,
                 discountDisplay_component_1.PaDiscountDisplayComponent, discountEditor_component_1.PaDiscountEditorComponent,
                 discount_pipe_1.PaDiscountPipe, discountAmount_directive_1.PaDiscountAmountDirective],
-            providers: [discount_service_1.DiscountService, datasource_model_1.SimpleDataSource, repository_model_1.Model],
+            providers: [discount_service_1.DiscountService, datasource_model_1.SimpleDataSource, repository_model_1.Model,
+                { provide: log_service_1.LOG_SERVICE, useClass: log_service_1.LogService, multi: true },
+                { provide: log_service_1.LOG_SERVICE, useClass: log_service_1.SpecialLogService, multi: true }],
             bootstrap: [component_1.ProductComponent]
         }), 
         __metadata('design:paramtypes', [])
