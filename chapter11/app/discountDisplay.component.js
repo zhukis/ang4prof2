@@ -8,19 +8,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var product_model_1 = require("./product.model");
 var core_1 = require("@angular/core");
-var SimpleDataSource = (function () {
-    function SimpleDataSource() {
-        this.data = new Array(new product_model_1.Product(1, "Kayak", "Watersports", 275), new product_model_1.Product(2, "Lifejacket", "Watersports", 48.95), new product_model_1.Product(3, "Soccer Ball", "Soccer", 19.50), new product_model_1.Product(4, "Corner Flags", "Soccer", 34.95), new product_model_1.Product(5, "Thinking Cap", "Chess", 16));
+var discount_service_1 = require("./discount.service");
+var PaDiscountDisplayComponent = (function () {
+    function PaDiscountDisplayComponent(discounter) {
+        this.discounter = discounter;
     }
-    SimpleDataSource.prototype.getData = function () {
-        return this.data;
-    };
-    SimpleDataSource = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
-    ], SimpleDataSource);
-    return SimpleDataSource;
+    PaDiscountDisplayComponent = __decorate([
+        core_1.Component({
+            selector: "paDiscountDisplay",
+            template: "<div class=\"bg-info p-a-1\">\n                    The discount is {{discounter.discount}}\n                </div>"
+        }), 
+        __metadata('design:paramtypes', [discount_service_1.DiscountService])
+    ], PaDiscountDisplayComponent);
+    return PaDiscountDisplayComponent;
 }());
-exports.SimpleDataSource = SimpleDataSource;
+exports.PaDiscountDisplayComponent = PaDiscountDisplayComponent;

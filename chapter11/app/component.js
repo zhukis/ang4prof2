@@ -9,18 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var repository_model_1 = require("./repository.model");
 var ProductComponent = (function () {
     function ProductComponent() {
-        this.model = new repository_model_1.Model();
     }
-    ProductComponent.prototype.addProduct = function (p) {
-        this.model.saveProduct(p);
-    };
     ProductComponent = __decorate([
         core_1.Component({
             selector: "app",
-            templateUrl: "app/template.html",
+            templateUrl: "app/template.html"
         }), 
         __metadata('design:paramtypes', [])
     ], ProductComponent);

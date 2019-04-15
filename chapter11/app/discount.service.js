@@ -8,19 +8,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var product_model_1 = require("./product.model");
 var core_1 = require("@angular/core");
-var SimpleDataSource = (function () {
-    function SimpleDataSource() {
-        this.data = new Array(new product_model_1.Product(1, "Kayak", "Watersports", 275), new product_model_1.Product(2, "Lifejacket", "Watersports", 48.95), new product_model_1.Product(3, "Soccer Ball", "Soccer", 19.50), new product_model_1.Product(4, "Corner Flags", "Soccer", 34.95), new product_model_1.Product(5, "Thinking Cap", "Chess", 16));
+var DiscountService = (function () {
+    function DiscountService() {
+        this.discountValue = 10;
     }
-    SimpleDataSource.prototype.getData = function () {
-        return this.data;
+    Object.defineProperty(DiscountService.prototype, "discount", {
+        get: function () {
+            return this.discountValue;
+        },
+        set: function (newValue) {
+            this.discountValue = newValue || 0;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    DiscountService.prototype.applyDiscount = function (price) {
+        return Math.max(price - this.discountValue, 5);
     };
-    SimpleDataSource = __decorate([
+    DiscountService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [])
-    ], SimpleDataSource);
-    return SimpleDataSource;
+    ], DiscountService);
+    return DiscountService;
 }());
-exports.SimpleDataSource = SimpleDataSource;
+exports.DiscountService = DiscountService;

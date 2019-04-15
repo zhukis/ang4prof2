@@ -1,16 +1,14 @@
 import { Component, Input, QueryList, ViewChildren } from "@angular/core";
 import { Model } from "./repository.model";
 import { Product } from "./product.model";
-import { PaCellColor } from "./cellColor.directive";
 
 @Component({
     selector: "paProductTable",
     templateUrl: "app/productTable.component.html"
 })
 export class ProductTableComponent {
-
-    @Input("model")
-    dataModel: Model;
+    
+    constructor(private dataModel: Model) {}
 
     getProduct(key: number): Product {
         return this.dataModel.getProduct(key);
