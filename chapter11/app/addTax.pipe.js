@@ -9,23 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var PaCellColor = (function () {
-    function PaCellColor() {
-        this.bgClass = "";
+var PaAddTaxPipe = (function () {
+    function PaAddTaxPipe() {
+        this.defaultRate = 10;
     }
-    PaCellColor.prototype.setColor = function (dark) {
-        this.bgClass = dark ? "bg-inverse" : "";
+    PaAddTaxPipe.prototype.transform = function (value, rate) {
+        var valueNumber = Number.parseFloat(value);
+        var rateNumber = rate == undefined ? this.defaultRate : Number.parseInt(rate);
+        return valueNumber + (valueNumber * (rateNumber / 100));
     };
-    __decorate([
-        core_1.HostBinding("class"), 
-        __metadata('design:type', String)
-    ], PaCellColor.prototype, "bgClass", void 0);
-    PaCellColor = __decorate([
-        core_1.Directive({
-            selector: "td[paApplyColor]"
+    PaAddTaxPipe = __decorate([
+        core_1.Pipe({
+            name: "addTax"
         }), 
         __metadata('design:paramtypes', [])
-    ], PaCellColor);
-    return PaCellColor;
+    ], PaAddTaxPipe);
+    return PaAddTaxPipe;
 }());
-exports.PaCellColor = PaCellColor;
+exports.PaAddTaxPipe = PaAddTaxPipe;

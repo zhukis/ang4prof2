@@ -9,23 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var PaCellColor = (function () {
-    function PaCellColor() {
-        this.bgClass = "";
+var PaCategoryFilterPipe = (function () {
+    function PaCategoryFilterPipe() {
     }
-    PaCellColor.prototype.setColor = function (dark) {
-        this.bgClass = dark ? "bg-inverse" : "";
+    PaCategoryFilterPipe.prototype.transform = function (products, category) {
+        return category == undefined ?
+            products : products.filter(function (p) { return p.category == category; });
     };
-    __decorate([
-        core_1.HostBinding("class"), 
-        __metadata('design:type', String)
-    ], PaCellColor.prototype, "bgClass", void 0);
-    PaCellColor = __decorate([
-        core_1.Directive({
-            selector: "td[paApplyColor]"
+    PaCategoryFilterPipe = __decorate([
+        core_1.Pipe({
+            name: "filter",
+            pure: false
         }), 
         __metadata('design:paramtypes', [])
-    ], PaCellColor);
-    return PaCellColor;
+    ], PaCategoryFilterPipe);
+    return PaCategoryFilterPipe;
 }());
-exports.PaCellColor = PaCellColor;
+exports.PaCategoryFilterPipe = PaCategoryFilterPipe;
