@@ -1,4 +1,14 @@
-<style>
+<div class="col-xs-4 p-a-1 bg-success">
+    <paProductForm (paNewProduct)="addProduct($event)"></paProductForm>
+</div>
+<div class="col-xs-8 p-a-1 bg-primary">
+    <paToggleView>
+        <paProductTable [model]="model"></paProductTable>
+    </paToggleView>
+</div>
+
+
+<!-- <style>
     input.ng-dirty.ng-invalid { border: 2px solid #ff0000 }
     input.ng-dirty.ng-valid { border: 2px soid #6bc502 }
 </style>
@@ -56,4 +66,4 @@
             </td>
         </tr>
     </table>    
-</div>
+</div> -->

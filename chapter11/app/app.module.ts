@@ -8,12 +8,16 @@ import { PaStructureDirective } from "./paif.directive";
 import { PaIteratorDirective } from "./iterator.directive";
 import { PaCellColor } from "./cellColor.directive";
 import { PaCellColorSwitcher } from "./cellColorSwitcher.directive";
+import { ProductTableComponent } from "./productTable.component";
+import { ProductFormComponent } from "./productForm.component";
+import { PaToggleView } from "./toggleView.component";
 
 @NgModule({
     imports: [BrowserModule, FormsModule, ReactiveFormsModule],
     declarations: [ProductComponent, PaAttrDirective, PaModel, 
         PaStructureDirective, PaIteratorDirective,
-        PaCellColor, PaCellColorSwitcher],
+        PaCellColor, PaCellColorSwitcher, ProductTableComponent,
+        ProductFormComponent, PaToggleView],
     bootstrap: [ProductComponent]
 })
 export class AppModule {}
