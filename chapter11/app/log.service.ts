@@ -1,5 +1,7 @@
 import { Injectable, OpaqueToken } from "@angular/core";
+
 export const LOG_SERVICE = new OpaqueToken("logger");
+export const LOG_LEVEL = new OpaqueToken("log_level");
 
 export enum LogLevel {
     DEBUG, INFO, ERROR

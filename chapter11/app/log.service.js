@@ -15,6 +15,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 exports.LOG_SERVICE = new core_1.OpaqueToken("logger");
+exports.LOG_LEVEL = new core_1.OpaqueToken("log_level");
 (function (LogLevel) {
     LogLevel[LogLevel["DEBUG"] = 0] = "DEBUG";
     LogLevel[LogLevel["INFO"] = 1] = "INFO";

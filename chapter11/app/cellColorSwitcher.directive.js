@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var cellColor_directive_1 = require("./cellColor.directive");
+var log_service_1 = require("./log.service");
 var PaCellColorSwitcher = (function () {
     function PaCellColorSwitcher() {
     }
@@ -39,7 +40,8 @@ var PaCellColorSwitcher = (function () {
     ], PaCellColorSwitcher.prototype, "contentChildren", void 0);
     PaCellColorSwitcher = __decorate([
         core_1.Directive({
-            selector: "table"
+            selector: "table",
+            providers: [log_service_1.LogService]
         }), 
         __metadata('design:paramtypes', [])
     ], PaCellColorSwitcher);

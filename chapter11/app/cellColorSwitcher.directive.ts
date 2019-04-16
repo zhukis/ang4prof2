@@ -1,8 +1,10 @@
 import { Directive, Input, ContentChild, SimpleChange, ContentChildren, QueryList } from "@angular/core";
 import { PaCellColor } from "./cellColor.directive";
+import { LogService } from "./log.service";
 
 @Directive({
-    selector: "table"
+    selector: "table",
+    providers: [LogService]
 })
 export class PaCellColorSwitcher {
 

@@ -8,16 +8,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 var core_1 = require("@angular/core");
 var form_model_1 = require("./form.model");
 var product_model_1 = require("./product.model");
 var repository_model_1 = require("./repository.model");
+var valueDisplay_directive_1 = require("./valueDisplay.directive");
 var ProductFormComponent = (function () {
-    function ProductFormComponent(model) {
+    function ProductFormComponent(model, serviceValue) {
         this.model = model;
+        this.serviceValue = serviceValue;
         this.form = new form_model_1.ProductFormGroup();
         this.newProduct = new product_model_1.Product();
         this.formSubmitted = false;
+        console.log("Service Value: " + serviceValue);
     }
     ProductFormComponent.prototype.submitForm = function (form) {
         this.formSubmitted = true;
@@ -32,8 +38,11 @@ var ProductFormComponent = (function () {
         core_1.Component({
             selector: "paProductForm",
             templateUrl: "app/productForm.component.html",
-        }), 
-        __metadata('design:paramtypes', [repository_model_1.Model])
+            viewProviders: [{ provide: valueDisplay_directive_1.VALUE_SERVICE, useValue: "Oranges" }]
+        }),
+        __param(1, core_1.Inject(valueDisplay_directive_1.VALUE_SERVICE)),
+        __param(1, core_1.SkipSelf()), 
+        __metadata('design:paramtypes', [repository_model_1.Model, String])
     ], ProductFormComponent);
     return ProductFormComponent;
 }());
