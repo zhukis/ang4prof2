@@ -1,10 +1,10 @@
 import { Component, Input, QueryList, ViewChildren } from "@angular/core";
-import { Model } from "./repository.model";
-import { Product } from "./product.model";
+import { Model } from "../model/repository.model";
+import { Product } from "../model/product.model";
 
 @Component({
     selector: "paProductTable",
-    templateUrl: "app/productTable.component.html"
+    templateUrl: "app/components/productTable.component.html"
 })
 export class ProductTableComponent {
     

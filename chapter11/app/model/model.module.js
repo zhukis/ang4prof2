@@ -9,18 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var discount_service_1 = require("./discount.service");
-var PaDiscountEditorComponent = (function () {
-    function PaDiscountEditorComponent(discounter) {
-        this.discounter = discounter;
+var repository_model_1 = require("./repository.model");
+var datasource_model_1 = require("./datasource.model");
+var ModelModule = (function () {
+    function ModelModule() {
     }
-    PaDiscountEditorComponent = __decorate([
-        core_1.Component({
-            selector: "paDiscountEditor",
-            template: "<div class=\"form-group\">\n                    <label>Discount</label>\n                    <input [(ngModel)]=\"discounter.discount\"\n                        class=\"form-control\" type=\"number\" />\n                </div>"
+    ModelModule = __decorate([
+        core_1.NgModule({
+            providers: [repository_model_1.Model, datasource_model_1.SimpleDataSource]
         }), 
-        __metadata('design:paramtypes', [discount_service_1.DiscountService])
-    ], PaDiscountEditorComponent);
-    return PaDiscountEditorComponent;
+        __metadata('design:paramtypes', [])
+    ], ModelModule);
+    return ModelModule;
 }());
-exports.PaDiscountEditorComponent = PaDiscountEditorComponent;
+exports.ModelModule = ModelModule;

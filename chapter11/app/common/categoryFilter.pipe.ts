@@ -1,5 +1,5 @@
-import { Product } from "./product.model";
 import { Pipe } from "@angular/core";
+import { Product } from "../model/product.model";
 
 @Pipe({
     name: "filter",

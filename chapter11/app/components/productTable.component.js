@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var repository_model_1 = require("./repository.model");
+var repository_model_1 = require("../model/repository.model");
 var ProductTableComponent = (function () {
     function ProductTableComponent(dataModel) {
         this.dataModel = dataModel;
@@ -29,7 +29,7 @@ var ProductTableComponent = (function () {
     ProductTableComponent = __decorate([
         core_1.Component({
             selector: "paProductTable",
-            templateUrl: "app/productTable.component.html"
+            templateUrl: "app/components/productTable.component.html"
         }), 
         __metadata('design:paramtypes', [repository_model_1.Model])
     ], ProductTableComponent);

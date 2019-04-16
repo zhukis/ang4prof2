@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Attribute, Input, SimpleChange, EventEmitter, Output, HostBinding, HostListener } from "@angular/core";
-import { Product } from "./product.model";
+import { Product } from "../model/product.model";
 
 @Directive({
     selector: "[pa-attr]"
@@ -22,16 +22,4 @@ export class PaAttrDirective {
             this.click.emit(this.product.category);
         }
     }
-
-    // ngOnChanges(changes: {[property: string]: SimpleChange}) {
-    //     let change = changes["bgClass"];
-    //     let classList = this.element.nativeElement.classList;
-    //     if (!change.isFirstChange() && classList.contains(change.previousValue)) {
-    //         classList.remove(change.previousValue);
-    //     }
-    //     if (!classList.contains(change.currentValue)) {
-    //         classList.add(change.currentValue);
-    //     }
-    // }
-
 }

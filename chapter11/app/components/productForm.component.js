@@ -12,10 +12,10 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 var core_1 = require("@angular/core");
-var form_model_1 = require("./form.model");
-var product_model_1 = require("./product.model");
-var repository_model_1 = require("./repository.model");
-var valueDisplay_directive_1 = require("./valueDisplay.directive");
+var valueDisplay_directive_1 = require("../common/valueDisplay.directive");
+var form_model_1 = require("../model/form.model");
+var product_model_1 = require("../model/product.model");
+var repository_model_1 = require("../model/repository.model");
 var ProductFormComponent = (function () {
     function ProductFormComponent(model, serviceValue) {
         this.model = model;
@@ -37,7 +37,8 @@ var ProductFormComponent = (function () {
     ProductFormComponent = __decorate([
         core_1.Component({
             selector: "paProductForm",
-            templateUrl: "app/productForm.component.html",
+            moduleId: module.id,
+            templateUrl: "productForm.component.html",
             viewProviders: [{ provide: valueDisplay_directive_1.VALUE_SERVICE, useValue: "Oranges" }]
         }),
         __param(1, core_1.Inject(valueDisplay_directive_1.VALUE_SERVICE)),
