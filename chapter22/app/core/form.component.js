@@ -8,23 +8,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 var core_1 = require("@angular/core");
 var product_model_1 = require("../model/product.model");
 var repository_model_1 = require("../model/repository.model");
 var sharedState_model_1 = require("./sharedState.model");
+var Observable_1 = require("rxjs/Observable");
 var FormComponent = (function () {
-    function FormComponent(model, state) {
+    function FormComponent(model, stateEvents) {
+        var _this = this;
         this.model = model;
-        this.state = state;
+        this.stateEvents = stateEvents;
         this.product = new product_model_1.Product();
+        this.editing = false;
+        stateEvents.subscribe(function (update) {
+            _this.product = new product_model_1.Product();
+            if (update.id != undefined) {
+                Object.assign(_this.product, _this.model.getProduct(update.id));
+            }
+            _this.editing = update.mode == sharedState_model_1.MODES.EDIT;
+        });
     }
-    Object.defineProperty(FormComponent.prototype, "editing", {
-        get: function () {
-            return this.state.mode == sharedState_model_1.MODES.EDIT;
-        },
-        enumerable: true,
-        configurable: true
-    });
     FormComponent.prototype.submitForm = function (form) {
         if (form.valid) {
             this.model.saveProduct(this.product);
@@ -41,8 +47,9 @@ var FormComponent = (function () {
             moduleId: module.id,
             templateUrl: "form.component.html",
             styleUrls: ["form.component.css"]
-        }), 
-        __metadata('design:paramtypes', [repository_model_1.Model, sharedState_model_1.SharedState])
+        }),
+        __param(1, core_1.Inject(sharedState_model_1.SHARED_STATE)), 
+        __metadata('design:paramtypes', [repository_model_1.Model, Observable_1.Observable])
     ], FormComponent);
     return FormComponent;
 }());

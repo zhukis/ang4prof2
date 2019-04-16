@@ -26,9 +26,14 @@ var Model = (function () {
         return this.products.find(function (p) { return _this.locator(p, id); });
     };
     Model.prototype.saveProduct = function (product) {
+        var _this = this;
         if (product.id == 0 || product.id == null) {
             product.id = this.generateID();
             this.products.push(product);
+        }
+        else {
+            var index = this.products.findIndex(function (p) { return _this.locator(p, product.id); });
+            this.products.splice(index, 1, product);
         }
     };
     Model.prototype.deleteProduct = function (id) {
