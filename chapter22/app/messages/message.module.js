@@ -12,6 +12,7 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var message_component_1 = require("./message.component");
 var message_service_1 = require("./message.service");
+var errorHandler_1 = require("./errorHandler");
 var MessageModule = (function () {
     function MessageModule() {
     }
@@ -20,7 +21,8 @@ var MessageModule = (function () {
             imports: [platform_browser_1.BrowserModule],
             declarations: [message_component_1.MessageComponent],
             exports: [message_component_1.MessageComponent],
-            providers: [message_service_1.MessageService]
+            providers: [message_service_1.MessageService,
+                { provide: core_1.ErrorHandler, useClass: errorHandler_1.MessageErrorHandler }]
         }), 
         __metadata('design:paramtypes', [])
     ], MessageModule);

@@ -9,21 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
-var repository_model_1 = require("./repository.model");
-var rest_datasource_1 = require("./rest.datasource");
-var ModelModule = (function () {
-    function ModelModule() {
+var message_service_1 = require("./message.service");
+var message_model_1 = require("./message.model");
+var MessageErrorHandler = (function () {
+    function MessageErrorHandler(messageService) {
+        this.messageService = messageService;
     }
-    ModelModule = __decorate([
-        core_1.NgModule({
-            imports: [http_1.HttpModule],
-            providers: [repository_model_1.Model, rest_datasource_1.RestDataSource,
-                { provide: rest_datasource_1.REST_URL, useValue: "http://" + location.hostname + ":3500/products"
-                }]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], ModelModule);
-    return ModelModule;
+    MessageErrorHandler.prototype.handleError = function (error) {
+        var _this = this;
+        var msg = error instanceof Error ? error.message : error.toString();
+        setTimeout(function () { return _this.messageService
+            .reportMessage(new message_model_1.Message(msg, true)); }, 0);
+    };
+    MessageErrorHandler = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [message_service_1.MessageService])
+    ], MessageErrorHandler);
+    return MessageErrorHandler;
 }());
-exports.ModelModule = ModelModule;
+exports.MessageErrorHandler = MessageErrorHandler;

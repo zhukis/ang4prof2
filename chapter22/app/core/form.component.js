@@ -28,10 +28,6 @@ var FormComponent = (function () {
         this.product = new product_model_1.Product();
         this.editing = false;
         stateEvents
-            .skipWhile(function (state) { return state.mode == sharedState_model_1.MODES.EDIT; })
-            .distinctUntilChanged(function (firstState, secondState) {
-            return firstState.mode == secondState.mode && firstState.id == secondState.id;
-        })
             .subscribe(function (update) {
             _this.product = new product_model_1.Product();
             if (update.id != undefined) {

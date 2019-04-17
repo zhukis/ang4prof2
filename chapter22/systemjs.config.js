@@ -6,9 +6,9 @@
 
     var packages = { "app": {} };
 
-    var angularModules = ["common", "compiler",
-     "core", "platform-browser", "platform-browser-dynamic",
-     "forms"];
+    var angularModules = ["common", "compiler", 
+        "core", "platform-browser", "platform-browser-dynamic", 
+        "forms", "http"];
 
     angularModules.forEach(function (pkg) {
         packages["@angular/" + pkg] = {
