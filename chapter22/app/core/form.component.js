@@ -8,39 +8,39 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 var core_1 = require("@angular/core");
 var product_model_1 = require("../model/product.model");
 var repository_model_1 = require("../model/repository.model");
-var sharedState_model_1 = require("./sharedState.model");
-var Observable_1 = require("rxjs/Observable");
-require("rxjs/add/operator/filter");
-require("rxjs/add/operator/map");
-require("rxjs/add/operator/distinctUntilChanged");
-require("rxjs/add/operator/skipWhile");
+var router_1 = require("@angular/router");
 var FormComponent = (function () {
-    function FormComponent(model, stateEvents) {
-        var _this = this;
+    function FormComponent(model, activeRoute, router) {
         this.model = model;
-        this.stateEvents = stateEvents;
+        this.router = router;
         this.product = new product_model_1.Product();
         this.editing = false;
-        stateEvents
-            .subscribe(function (update) {
-            _this.product = new product_model_1.Product();
-            if (update.id != undefined) {
-                Object.assign(_this.product, _this.model.getProduct(update.id));
+        this.editing = activeRoute.snapshot.params["mode"] == "edit";
+        var id = activeRoute.snapshot.params["id"];
+        if (id != null) {
+            var name_1 = activeRoute.snapshot.params["name"];
+            var category = activeRoute.snapshot.params["category"];
+            var price = activeRoute.snapshot.params["price"];
+            if (name_1 != null && category != null && price != null) {
+                this.product.id = id;
+                this.product.name = name_1;
+                this.product.category = category;
+                this.product.price = Number.parseFloat(price);
             }
-            _this.editing = update.mode == sharedState_model_1.MODES.EDIT;
-        });
+            else {
+                Object.assign(this.product, model.getProduct(id) || new product_model_1.Product());
+            }
+        }
     }
     FormComponent.prototype.submitForm = function (form) {
         if (form.valid) {
             this.model.saveProduct(this.product);
-            this.product = new product_model_1.Product();
-            form.reset();
+            // this.product = new Product();
+            // form.reset();
+            this.router.navigateByUrl("/");
         }
     };
     FormComponent.prototype.resetForm = function () {
@@ -52,9 +52,8 @@ var FormComponent = (function () {
             moduleId: module.id,
             templateUrl: "form.component.html",
             styleUrls: ["form.component.css"]
-        }),
-        __param(1, core_1.Inject(sharedState_model_1.SHARED_STATE)), 
-        __metadata('design:paramtypes', [repository_model_1.Model, Observable_1.Observable])
+        }), 
+        __metadata('design:paramtypes', [repository_model_1.Model, router_1.ActivatedRoute, router_1.Router])
     ], FormComponent);
     return FormComponent;
 }());

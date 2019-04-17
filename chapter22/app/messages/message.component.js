@@ -10,10 +10,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var message_service_1 = require("./message.service");
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+require("rxjs/add/operator/filter");
 var MessageComponent = (function () {
-    function MessageComponent(messageService) {
+    function MessageComponent(messageService, router) {
         var _this = this;
         messageService.messages.subscribe(function (m) { return _this.lastMessage = m; });
+        router.events
+            .filter(function (e) { return e instanceof router_1.NavigationEnd
+            || e instanceof router_1.NavigationCancel; })
+            .subscribe(function (e) { _this.lastMessage = null; });
     }
     MessageComponent = __decorate([
         core_1.Component({
@@ -21,7 +27,7 @@ var MessageComponent = (function () {
             moduleId: module.id,
             templateUrl: "message.component.html"
         }), 
-        __metadata('design:paramtypes', [message_service_1.MessageService])
+        __metadata('design:paramtypes', [message_service_1.MessageService, router_1.Router])
     ], MessageComponent);
     return MessageComponent;
 }());

@@ -13,12 +13,13 @@ var platform_browser_1 = require("@angular/platform-browser");
 var message_component_1 = require("./message.component");
 var message_service_1 = require("./message.service");
 var errorHandler_1 = require("./errorHandler");
+var router_1 = require("@angular/router");
 var MessageModule = (function () {
     function MessageModule() {
     }
     MessageModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule],
+            imports: [platform_browser_1.BrowserModule, router_1.RouterModule],
             declarations: [message_component_1.MessageComponent],
             exports: [message_component_1.MessageComponent],
             providers: [message_service_1.MessageService,
