@@ -17,6 +17,9 @@ var form_component_1 = require("./form.component");
 var state_pipe_1 = require("./state.pipe");
 var message_module_1 = require("../messages/message.module");
 var router_1 = require("@angular/router");
+var productCount_component_1 = require("./productCount.component");
+var categoryCount_component_1 = require("./categoryCount.component");
+var notFound_component_1 = require("./notFound.component");
 var CoreModule = (function () {
     function CoreModule() {
     }
@@ -24,7 +27,8 @@ var CoreModule = (function () {
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, model_module_1.ModelModule, message_module_1.MessageModule,
                 router_1.RouterModule],
-            declarations: [table_component_1.TableComponent, form_component_1.FormComponent, state_pipe_1.StatePipe],
+            declarations: [table_component_1.TableComponent, form_component_1.FormComponent, state_pipe_1.StatePipe,
+                productCount_component_1.ProductCountComponent, categoryCount_component_1.CategoryCountComponent, notFound_component_1.NotFoundComponent],
             exports: [model_module_1.ModelModule, table_component_1.TableComponent, form_component_1.FormComponent]
         }), 
         __metadata('design:paramtypes', [])

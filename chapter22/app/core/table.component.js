@@ -10,16 +10,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var repository_model_1 = require("../model/repository.model");
+var router_1 = require("@angular/router");
 var TableComponent = (function () {
-    function TableComponent(model) {
+    function TableComponent(model, activeRoute) {
+        var _this = this;
         this.model = model;
+        this.category = null;
+        activeRoute.params.subscribe(function (params) {
+            _this.category = params["category"] || null;
+        });
     }
     TableComponent.prototype.getProduct = function (key) {
         return this.model.getProduct(key);
     };
     TableComponent.prototype.getProducts = function () {
-        return this.model.getProducts();
+        var _this = this;
+        return this.model.getProducts()
+            .filter(function (p) { return _this.category == null || p.category == _this.category; });
     };
+    Object.defineProperty(TableComponent.prototype, "categories", {
+        get: function () {
+            return this.model.getProducts()
+                .map(function (p) { return p.category; })
+                .filter(function (category, index, array) { return array.indexOf(category) == index; });
+        },
+        enumerable: true,
+        configurable: true
+    });
     TableComponent.prototype.deleteProduct = function (key) {
         this.model.deleteProduct(key);
     };
@@ -29,7 +46,7 @@ var TableComponent = (function () {
             moduleId: module.id,
             templateUrl: "table.component.html"
         }), 
-        __metadata('design:paramtypes', [repository_model_1.Model])
+        __metadata('design:paramtypes', [repository_model_1.Model, router_1.ActivatedRoute])
     ], TableComponent);
     return TableComponent;
 }());

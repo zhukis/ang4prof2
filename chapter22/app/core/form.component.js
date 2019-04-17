@@ -14,32 +14,22 @@ var repository_model_1 = require("../model/repository.model");
 var router_1 = require("@angular/router");
 var FormComponent = (function () {
     function FormComponent(model, activeRoute, router) {
+        var _this = this;
         this.model = model;
         this.router = router;
         this.product = new product_model_1.Product();
         this.editing = false;
-        this.editing = activeRoute.snapshot.params["mode"] == "edit";
-        var id = activeRoute.snapshot.params["id"];
-        if (id != null) {
-            var name_1 = activeRoute.snapshot.params["name"];
-            var category = activeRoute.snapshot.params["category"];
-            var price = activeRoute.snapshot.params["price"];
-            if (name_1 != null && category != null && price != null) {
-                this.product.id = id;
-                this.product.name = name_1;
-                this.product.category = category;
-                this.product.price = Number.parseFloat(price);
+        activeRoute.params.subscribe(function (params) {
+            _this.editing = params["mode"] == "edit";
+            var id = params["id"];
+            if (id != null) {
+                Object.assign(_this.product, model.getProduct(id) || new product_model_1.Product());
             }
-            else {
-                Object.assign(this.product, model.getProduct(id) || new product_model_1.Product());
-            }
-        }
+        });
     }
     FormComponent.prototype.submitForm = function (form) {
         if (form.valid) {
             this.model.saveProduct(this.product);
-            // this.product = new Product();
-            // form.reset();
             this.router.navigateByUrl("/");
         }
     };

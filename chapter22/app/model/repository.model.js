@@ -25,6 +25,28 @@ var Model = (function () {
         var _this = this;
         return this.products.find(function (p) { return _this.locator(p, id); });
     };
+    Model.prototype.getNextProductId = function (id) {
+        var _this = this;
+        var index = this.products.findIndex(function (p) { return _this.locator(p, id); });
+        if (index > -1) {
+            return this.products[index + 2 < this.products.length
+                ? index + 1 : 0].id;
+        }
+        else {
+            return id || 0;
+        }
+    };
+    Model.prototype.getPreviousProductId = function (id) {
+        var _this = this;
+        var index = this.products.findIndex(function (p) { return _this.locator(p, id); });
+        if (index > -1) {
+            return this.products[index > 0
+                ? index - 1 : this.products.length - 1].id;
+        }
+        else {
+            return id || 0;
+        }
+    };
     Model.prototype.saveProduct = function (product) {
         var _this = this;
         if (product.id == 0 || product.id == null) {
