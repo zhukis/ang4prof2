@@ -1,17 +1,17 @@
 import { Message } from "./message.model";
 import { Injectable } from "@angular/core";
+import { Subject } from "rxjs/Subject";
+import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class MessageService {
-    private handler: (m: Message) => void;
+    private subject = new Subject();
 
     reportMessage(msg: Message) {
-        if (this.handler != null) {
-            this.handler(msg);
-        }
+        this.subject.next(msg);
     }
 
-    registerMessageHandler(handler: (m: Message) => void) {
-        this.handler = handler;
+    get messages(): Observable<Message> {
+        return this.subject;
     }
 }

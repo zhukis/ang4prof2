@@ -13,7 +13,7 @@ var core_1 = require("@angular/core");
 var MessageComponent = (function () {
     function MessageComponent(messageService) {
         var _this = this;
-        messageService.registerMessageHandler(function (m) { return _this.lastMessage = m; });
+        messageService.messages.subscribe(function (m) { return _this.lastMessage = m; });
     }
     MessageComponent = __decorate([
         core_1.Component({
