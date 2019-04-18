@@ -9,22 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
-var repository_model_1 = require("./repository.model");
-var rest_datasource_1 = require("./rest.datasource");
-var model_resolver_1 = require("./model.resolver");
-var ModelModule = (function () {
-    function ModelModule() {
+var SecondComponent = (function () {
+    function SecondComponent() {
     }
-    ModelModule = __decorate([
-        core_1.NgModule({
-            imports: [http_1.HttpModule],
-            providers: [repository_model_1.Model, rest_datasource_1.RestDataSource, model_resolver_1.ModelResolver,
-                { provide: rest_datasource_1.REST_URL, useValue: "http://" + location.hostname + ":3500/products"
-                }]
+    SecondComponent = __decorate([
+        core_1.Component({
+            selector: "second",
+            template: "<div class=\"bg-info p-a-1\">Second Component</div>"
         }), 
         __metadata('design:paramtypes', [])
-    ], ModelModule);
-    return ModelModule;
+    ], SecondComponent);
+    return SecondComponent;
 }());
-exports.ModelModule = ModelModule;
+exports.SecondComponent = SecondComponent;

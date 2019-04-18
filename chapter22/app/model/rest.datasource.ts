@@ -1,10 +1,11 @@
-import { Http, RequestMethod, Request, Headers } from "@angular/http";
+import { Http, RequestMethod, Request, Headers, Response } from "@angular/http";
 import { Inject, Injectable, OpaqueToken } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { Product } from "./product.model";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import "rxjs/add/observable/throw";
+import "rxjs/add/operator/delay";
 
 export const REST_URL = new OpaqueToken("rest_url");
 
@@ -42,7 +43,8 @@ export class RestDataSource {
             url: url,
             body: body,
             headers: headers
-        })).map(response => response.json())
+        })).delay(2000)
+            .map(response => response.json())
             .catch((error: Response) => Observable.throw(
                 `Network Error: ${error.statusText} (${error.status})`
             ) );

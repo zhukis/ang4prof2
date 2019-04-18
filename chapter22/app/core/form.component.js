@@ -18,23 +18,23 @@ var FormComponent = (function () {
         this.model = model;
         this.router = router;
         this.product = new product_model_1.Product();
+        this.originalProduct = new product_model_1.Product();
         this.editing = false;
         activeRoute.params.subscribe(function (params) {
             _this.editing = params["mode"] == "edit";
             var id = params["id"];
             if (id != null) {
                 Object.assign(_this.product, model.getProduct(id) || new product_model_1.Product());
+                Object.assign(_this.originalProduct, _this.product);
             }
         });
     }
     FormComponent.prototype.submitForm = function (form) {
         if (form.valid) {
             this.model.saveProduct(this.product);
+            this.originalProduct = this.product;
             this.router.navigateByUrl("/");
         }
-    };
-    FormComponent.prototype.resetForm = function () {
-        this.product = new product_model_1.Product();
     };
     FormComponent = __decorate([
         core_1.Component({
